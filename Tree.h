@@ -10,7 +10,7 @@ public:
 private:
     struct Node{
         Node();
-        Node(data_type);
+        explicit Node(data_type);
         ~Node();
 
         data_type value;

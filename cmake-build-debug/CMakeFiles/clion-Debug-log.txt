@@ -1,1 +1,4 @@
-CMakeLists.txt not found in /Users/heartofgold/Projects/Coherent-Hashing Select CMakeLists.txt
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/heartofgold/Projects/Coherent-Hashing -B /Users/heartofgold/Projects/Coherent-Hashing/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/heartofgold/Projects/Coherent-Hashing/cmake-build-debug
