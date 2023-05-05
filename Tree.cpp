@@ -15,7 +15,9 @@ Tree::Node::Node(Tree::data_type val) {
 
 Tree::Node::~Node() {
     value = 0;
+    delete left;
     left = nullptr;
+    delete right;
     right = nullptr;
 }
 
@@ -75,30 +77,9 @@ void Tree::inOrderVisit(Node *node) {
     inOrderVisit(node->right);
 }
 
-void Tree::postOrderVisit(Node *node, int i, Node **array){
-    if (node == nullptr){
-        return;
-    }
-    postOrderVisit(node->left, i, array);
-    postOrderVisit(node->right, i, array);
-    *array[i] = *node;
-    i++;
-}
-
 Tree::~Tree() {
-    cleaner();
-}
-
-void Tree::cleaner() {
-    Node **vector = new Node*[_dimension];
-    int i = 0;
-
-    Logger::notice(std::string("Costruzione del vettore di pulizia"));
-    postOrderVisit(_root, i, vector);
-    for(i = 0; i < _dimension; ++i){
-        delete vector[i];
-    }
-    delete[] vector;
+    delete _root;
+    _root = nullptr;
 }
 
 Tree::Node *Tree::search(Tree::data_type value) {

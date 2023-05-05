@@ -24,7 +24,6 @@ public:
 
     void add(data_type);
 
-    void cleaner();
     void inOrderVisit();
     void inOrderVisit(Node *);
 
@@ -35,7 +34,6 @@ private:
     Node *_root;
     dim_type _dimension;
 
-    void postOrderVisit(Node *node, int i, Node **array);
 };
 
 #endif
