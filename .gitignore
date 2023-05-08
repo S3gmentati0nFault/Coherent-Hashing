@@ -34,3 +34,4 @@
 # Useless files
 .idea/
 cmake-build-debug/
+./CMakeLists.txt
