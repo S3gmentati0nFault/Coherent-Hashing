@@ -1,33 +1,118 @@
 #ifndef COHERENT_HASHING_TREE_H
 #define COHERENT_HASHING_TREE_H
 
-
+template <typename T>
 class Tree {
 public:
     typedef unsigned int dim_type;
-    typedef int data_type;
+    typedef T data_type;
 
 private:
     struct Node{
-        Node();
-        explicit Node(data_type);
-        ~Node();
+        Node(){
+            value = 0;
+            left = nullptr;
+            right = nullptr;
+        }
+
+        explicit Node(const data_type &value){
+            value = value;
+            left = nullptr;
+            right = nullptr;
+        }
+
+        ~Node(){
+            value = 0;
+            delete left;
+            left = nullptr;
+            delete right;
+            right = nullptr;
+        }
 
         data_type value;
         Node *left, *right;
     };
 
+
 public:
 
-    Tree();
-    ~Tree();
+    Tree(){
+        _root = nullptr;
+        _dimension = 0;
+    }
 
-    void add(data_type);
+    ~Tree(){
+        delete _root;
+        _root = nullptr;
+    }
 
-    void inOrderVisit();
-    void inOrderVisit(Node *);
+    void add(const data_type &value){
+        Node *i = _root;
+        Node *parent;
+        Node *newNode = new Node(value);
+        bool right;
 
-    Node *search(data_type value);
+        Logger::notice(std::string("Inserting ")
+                       + std::to_string(newNode->value)
+                       + std::string(" in the tree"));
+
+        if(_dimension == 0){
+            _root = newNode;
+            _dimension++;
+            return;
+        }
+
+        while(i != nullptr){
+            right = false; parent = i;
+
+            if(value >= i->value){
+                i = i->right;
+                right = true;
+            }
+            else{
+                i = i->left;
+            }
+        }
+
+        if(right){
+            parent->right = newNode;
+        }
+        else{
+            parent->left = newNode;
+        }
+        _dimension++;
+    }
+
+//    void inOrderVisit() {
+//        inOrderVisit(_root);
+//    }
+
+    void inOrderVisit(Node *node) const {
+        if(node == nullptr){
+            return;
+        }
+        inOrderVisit(node->left);
+        Logger::notice(std::string("Value >> ")
+                       + std::to_string(node->value));
+        inOrderVisit(node->right);
+    }
+
+    Node *search(const data_type &value) const {
+        Node *node = _root;
+
+        while(node != nullptr){
+            if(node->value > value){
+                node = node->left;
+            }
+            else if(node-> value < value){
+                node = node->right;
+            }
+            else{
+                return node;
+            }
+        }
+        return nullptr;
+    }
 
 private:
 
