@@ -1,6 +1,0 @@
-# ninja log v5
-1	10	1682158313626378189	CMakeFiles/Coherent_Hashing.dir/CoherentHashing.cpp.o	1454b225afd25b8e
-284	335	1683299503742552366	Coherent_Hashing	ba775e1210405986
-1	222	1682158313839714466	CMakeFiles/Coherent_Hashing.dir/Logger.cpp.o	253f2a522cbda67c
-0	259	1683299503669217020	CMakeFiles/Coherent_Hashing.dir/Tree.cpp.o	ec89b8d0a180d7da
-0	284	1683299503692550994	CMakeFiles/Coherent_Hashing.dir/TreeTest.cpp.o	59d8b7b1a71661b4
