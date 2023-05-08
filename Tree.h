@@ -1,6 +1,8 @@
 #ifndef COHERENT_HASHING_TREE_H
 #define COHERENT_HASHING_TREE_H
 
+#include "Logger.h"
+
 template <typename T>
 class Tree {
 public:
@@ -15,8 +17,8 @@ private:
             right = nullptr;
         }
 
-        explicit Node(const data_type &value){
-            value = value;
+        explicit Node(const data_type &val){
+            value = val;
             left = nullptr;
             right = nullptr;
         }
@@ -83,9 +85,9 @@ public:
         _dimension++;
     }
 
-//    void inOrderVisit() {
-//        inOrderVisit(_root);
-//    }
+    void inOrderVisit() const {
+        inOrderVisit(_root);
+    }
 
     void inOrderVisit(Node *node) const {
         if(node == nullptr){

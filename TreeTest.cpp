@@ -4,8 +4,8 @@
 #include "Tree.h"
 
 void treeInsertionTest() {
-    Logger::notice("Tree insertion test");
-    Tree *tree = new Tree();
+    Logger::title("Tree insertion test");
+    auto *tree = new Tree<int>();
 
     for(int i = 0; i < 10; i++){
         tree->add(1 + (rand() % 100));
@@ -17,7 +17,7 @@ void treeInsertionTest() {
 
 void treeSearchTest(){
     Logger::title("Tree search test");
-    Tree *tree = new Tree();
+    auto *tree = new Tree<int>();
 
     for(int i = 0; i < 10; i++){
         tree->add(1 + (rand() % 100));
@@ -41,7 +41,6 @@ void treeSearchTest(){
 }
 
 int main() {
-    srand((unsigned) time(nullptr));
     treeInsertionTest();
     treeSearchTest();
     return 0;
