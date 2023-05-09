@@ -12,13 +12,13 @@ public:
     typedef std::uniform_int_distribution<> random;
     typedef std::random_device randomSupport;
 
-//    CoherentHashing();
-//    CoherentHashing(numberOfAgents);
-//    CoherentHashing(numberOfAgents, numberOfReplicae);
-//    ~CoherentHashing();
+    CoherentHashing();
+    CoherentHashing(numberOfAgents);
+    CoherentHashing(numberOfAgents, numberOfReplicae);
+    ~CoherentHashing();
 
 private:
-//    void distributionStartup();
+    void distributionStartup();
 
     numberOfAgents _numberOfAgents;
     numberOfReplicae _numberOfReplicae;

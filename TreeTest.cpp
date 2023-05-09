@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Colors.h"
 #include "Logger.h"
 #include "Tree.h"
