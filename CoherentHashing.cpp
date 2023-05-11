@@ -1,28 +1,24 @@
 #include "CoherentHashing.h"
+#include "./Data Structures/Vector.h"
 
 CoherentHashing::CoherentHashing() {
-    _numberOfAgents = 10;
-    _numberOfReplicae = 10 * 20;
-    _tree = new dataStructure();
-    for(int i = 0; i < _numberOfReplicae; ++i){
-        _tree->add((float)(_distribution(_support) / 100.0));
-    }
-}
+    _numberOfAgents = defaultAgents;
+    _numberOfReplicae = defaultReplicae;
+    _numberOfIntervals = _numberOfAgents * _numberOfReplicae;
 
-CoherentHashing::CoherentHashing(CoherentHashing::numberOfAgents noa) {
-    _numberOfAgents = noa;
-    _numberOfReplicae = noa * 20;
-    _tree = new dataStructure();
-    for(int i = 0; i < _numberOfAgents; ++i){
-        for(int j = 0; j < _numberOfReplicae; ++j){
-            _tree->add((float)(_distribution(_support) / 100.0));
-        }
-    }
-}
+    _tree = new data_structure();
 
+    distributionStartup();
+}
 
 void CoherentHashing::distributionStartup() {
     std::mt19937 gen(_support());
-    random dist(1, 100);
+    random_type dist(0, _numberOfAgents - 1);
     _distribution = dist;
+}
+
+void CoherentHashing::generateRandomNumbers(const Vector<int> &vector) {
+    for(int i = 0; i < vector.size(); ++i){
+        vector[i] = _distribution(_support);
+    }
 }

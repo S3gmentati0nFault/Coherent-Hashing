@@ -1,6 +1,11 @@
-#include <iostream>
+#include "CoherentHashing.h"
+#include "Data Structures/Vector.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    CoherentHashing *hash = new CoherentHashing();
+    Vector<int> vector(10*2);
+
+    hash->generateRandomNumbers(vector);
+
     return 0;
 }

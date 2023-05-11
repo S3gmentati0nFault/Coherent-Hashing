@@ -1,6 +1,6 @@
 #include "Colors.h"
 #include "Logger.h"
-#include "Tree.h"
+#include "Data Structures/Tree.h"
 
 void treeInsertionTest() {
     Logger::title("Tree insertion test");

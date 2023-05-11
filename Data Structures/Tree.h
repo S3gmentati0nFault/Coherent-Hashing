@@ -1,13 +1,15 @@
 #ifndef COHERENT_HASHING_TREE_H
 #define COHERENT_HASHING_TREE_H
 
-#include "Logger.h"
+#include "../Logger.h"
 
-template <typename T>
+namespace Tree
+template <typename T, typename functor>
 class Tree {
 public:
     typedef unsigned int dim_type;
     typedef T data_type;
+    typedef functor functor_type;
 
 private:
     struct Node{
@@ -17,7 +19,7 @@ private:
             right = nullptr;
         }
 
-        explicit Node(const data_type &val){
+        explicit Node(const data_type *val){
             value = val;
             left = nullptr;
             right = nullptr;
@@ -48,15 +50,15 @@ public:
         _root = nullptr;
     }
 
-    void add(const data_type &value){
+    void add(const data_type *value){
         Node *i = _root;
         Node *parent;
         Node *newNode = new Node(value);
         bool right;
 
-        Logger::notice(std::string("Inserting ")
-                       + std::to_string(newNode->value)
-                       + std::string(" in the tree"));
+//        Logger::notice(std::string("Inserting ")
+//                       + std::to_string(newNode->value)
+//                       + std::string(" in the tree"));
 
         if(_dimension == 0){
             _root = newNode;
@@ -67,7 +69,7 @@ public:
         while(i != nullptr){
             right = false; parent = i;
 
-            if(value >= i->value){
+            if(_functor(value, i->value)){
                 i = i->right;
                 right = true;
             }
@@ -103,10 +105,10 @@ public:
         Node *node = _root;
 
         while(node != nullptr){
-            if(node->value > value){
+            if(_functor(node->value, value)){
                 node = node->left;
             }
-            else if(node-> value < value){
+            else if(_functor(node->value, value)){
                 node = node->right;
             }
             else{
@@ -116,11 +118,11 @@ public:
         return nullptr;
     }
 
-private:
+protected:
 
     Node *_root;
     dim_type _dimension;
-
+    functor_type _functor;
 };
 
 #endif
