@@ -7,7 +7,7 @@ public:
     typedef unsigned int posType;
     typedef T idType;
 
-    Replica(){}
+    Replica() : position(0) {}
 
     Replica(idType id, posType pos){
         agentId = id;
@@ -19,12 +19,10 @@ public:
     }
 
     ~Replica(){
-        delete agentId;
-        agentId = nullptr;
         position = 0;
     }
 
-    Replica &operator=(Replica &other){
+    Replica &operator=(const Replica &other){
         if(this != other){
             agentId = other.agentId;
             position = other.position;
@@ -32,9 +30,17 @@ public:
         return *this;
     }
 
+    void setID(const idType &id) {
+        agentId = id;
+    }
+
+    idType getID() const {
+        return agentId;
+    }
+
     struct greaterOrEqual{
-        bool operator()(posType positionA, posType positionB){
-            if(positionA >= positionB){
+        bool operator()(const Replica<idType> *replicaA, const Replica<idType> *replicaB) const {
+            if(replicaA->position >= replicaB->position){
                 return true;
             }
             return false;
@@ -42,9 +48,9 @@ public:
     };
 
 private:
-    idType *agentId;
+    idType agentId;
     posType position;
-}
+};
 
 
 #endif
