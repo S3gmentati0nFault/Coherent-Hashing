@@ -22,8 +22,8 @@ public:
         position = 0;
     }
 
-    Replica &operator=(const Replica &other){
-        if(this != other){
+    Replica<idType> &operator=(const Replica<idType> &other) {
+        if(this != &other){
             agentId = other.agentId;
             position = other.position;
         }
@@ -39,13 +39,22 @@ public:
     }
 
     struct greaterOrEqual{
-        bool operator()(const Replica<idType> *replicaA, const Replica<idType> *replicaB) const {
+        bool operator()(const Replica<idType> *replicaA, const Replica<int> *replicaB) const {
             if(replicaA->position >= replicaB->position){
                 return true;
             }
             return false;
         }
     };
+
+//    struct greaterOrEqual{
+//        bool operator()(const Replica<int> *replicaA, const Replica<int> *replicaB) const {
+//            if(replicaA->position >= replicaB->position){
+//                return true;
+//            }
+//            return false;
+//        }
+//    };
 
 private:
     idType agentId;

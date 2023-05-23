@@ -3,7 +3,6 @@
 
 #include "../Logger.h"
 
-namespace Tree
 template <typename T, typename functor>
 class Tree {
 public:
@@ -20,7 +19,7 @@ private:
         }
 
         explicit Node(const data_type *val){
-            value = val;
+            value = *val;
             left = nullptr;
             right = nullptr;
         }
@@ -69,7 +68,7 @@ public:
         while(i != nullptr){
             right = false; parent = i;
 
-            if(_functor(value, i->value)){
+            if(_functor(value, &i->value)){
                 i = i->right;
                 right = true;
             }

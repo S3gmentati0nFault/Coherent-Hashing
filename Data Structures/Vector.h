@@ -50,6 +50,9 @@ public:
                 Vector *tmp(other);
                 return tmp;
             }
+            catch(...){
+                Logger::error("There was an error during instantiation");
+            }
         }
         else{
             return *this;

@@ -16,10 +16,6 @@ public:
     const counter_type defaultReplicae = 20;
 
     CoherentHashing();
-    CoherentHashing(counter_type);
-    CoherentHashing(counter_type, counter_type);
-    ~CoherentHashing();
-    void generateRandomNumbers(const Vector<int>&);
 
 private:
 
