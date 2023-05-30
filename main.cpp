@@ -1,6 +1,6 @@
 #include "CoherentHashing.h"
-#include "Data Structures/Vector.h"
 
 int main() {
+    CoherentHashing();
     return 0;
 }

@@ -36,9 +36,15 @@ private:
         Node *left, *right;
     };
 
+    bool checkURL(const Node *node, const int value) const {
+        if(node->value.getPosition() > value){
+            return true;
+        }
+        return false;
+    }
+
 
 public:
-
     Tree(){
         _root = nullptr;
         _dimension = 0;
@@ -96,7 +102,7 @@ public:
         }
         inOrderVisit(node->left);
         Logger::notice(std::string("Value >> ")
-                       + std::to_string(node->value));
+                       + std::to_string(node->value.getPosition()));
         inOrderVisit(node->right);
     }
 
@@ -107,7 +113,7 @@ public:
             if(_functor(node->value, value)){
                 node = node->left;
             }
-            else if(_functor(node->value, value)){
+            else if(_functor(value, node->value)){
                 node = node->right;
             }
             else{
@@ -117,8 +123,25 @@ public:
         return nullptr;
     }
 
-protected:
 
+    void assignURL(const int value) const {
+        Node *node = _root;
+        Node *parent = _root;
+
+        while(node != nullptr){
+            if(checkURL(node, value)) {
+                parent = node;
+                node = node->left;
+            }
+            else if(checkURL(node, value)){
+                Logger::notice(std::string("The parent node is >> ")
+                               + std::to_string(node->value.getPosition()));
+                return;
+            }
+        }
+    }
+
+protected:
     Node *_root;
     dim_type _dimension;
     functor_type _functor;

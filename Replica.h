@@ -1,6 +1,8 @@
 #ifndef COHERENT_HASHING_REPLICA_H
 #define COHERENT_HASHING_REPLICA_H
 
+#include <iostream>
+
 template <typename T>
 class Replica {
 public:
@@ -38,6 +40,10 @@ public:
         return agentId;
     }
 
+    posType getPosition() const {
+        return position;
+    }
+
     struct greaterOrEqual{
         bool operator()(const Replica<idType> *replicaA, const Replica<int> *replicaB) const {
             if(replicaA->position >= replicaB->position){
@@ -60,6 +66,12 @@ private:
     idType agentId;
     posType position;
 };
+
+template <typename T>
+std::ostream &operator<<(std::ostream &out, const Replica<T> &replica){
+    out << replica.getPosition() << "\t" << replica.getID() << std::endl;
+    return out;
+}
 
 
 #endif

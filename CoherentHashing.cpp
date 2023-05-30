@@ -1,5 +1,4 @@
 #include "CoherentHashing.h"
-#include "./Data Structures/Vector.h"
 
 CoherentHashing::CoherentHashing() {
     _numberOfAgents = defaultAgents;
@@ -17,7 +16,14 @@ CoherentHashing::CoherentHashing() {
         vector[i].setID(i);
     }
 
+    Logger::notice("Shuffling the vector");
     fisherYatesShuffle(vector);
+
+    Logger::notice("Structure of the tree");
+    _tree->inOrderVisit();
+
+    Logger::notice("Trying assigning value to a node");
+    _tree->assignURL(10);
 }
 
 void CoherentHashing::fisherYatesShuffle(Replica<int> *vector) const {
@@ -34,6 +40,7 @@ void CoherentHashing::fisherYatesShuffle(Replica<int> *vector) const {
             }
             if(j == pos){
                 _tree->add(new Replica<int>(vector[j].getID(), i));
+                scratched[j] = true;
             }
         }
     }
